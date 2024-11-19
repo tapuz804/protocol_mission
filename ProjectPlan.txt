@@ -14,7 +14,7 @@ we want to make a protocol that will work for a server that needs this:
 
 How the protocol will work:
     1. client will send the secrect code. (secure channel)
-    For each message we will add an id that will increment each message 
+    For each message we will add an id that will increse by one for each message 
     And each message will have a checksum for checking the message whole.
     2. client will send key signed
     3. server will verify the client key and work with that key.
