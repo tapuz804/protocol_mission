@@ -8,6 +8,9 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives.hashes import SHA256
 from cryptography.hazmat.backends import default_backend
 import os
+import socket
+from Crypto.PublicKey import ECC
+from Crypto.Random import get_random_bytes
 
 def generate_password(length):
     """
@@ -95,10 +98,6 @@ def decrypt_message(salt, iv, ciphertext, password):
     return message.decode()
 
 
-import socket
-from Crypto.PublicKey import ECC
-from Crypto.Random import get_random_bytes
-
 def diffie_hellman_key_exchange():
     # Generate server's private and public key
     server_private_key = ECC.generate(curve='P-256')
@@ -130,7 +129,3 @@ def diffie_hellman_key_exchange():
 
     finally:
         connection.close()
-
-if __name__ == "__main__":
-    shared_key = diffie_hellman_key_exchange()
-    print(f"Server's Shared Key: {shared_key.hex()}")
